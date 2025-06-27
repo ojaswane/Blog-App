@@ -66,11 +66,46 @@ export class Services {
             )
             return true;
         }
-        catch(error) {
+        catch (error) {
             console.error("Failed to delete post because : ", error);
             throw new Error("Failed to delete post. Please try again.");
         }
 
+    }
+
+    async getPost(slug) {
+        try {
+            return await this.databases.getDocument(
+                config.appwriteDatabasId,
+                config.appwriteCollectionId,
+                slug
+            )
+        } catch (error) {
+            console.error("Failed to get post because : ", error);
+            throw new Error("Failed to get post. Please try again.");
+        }
+
+    }
+
+    async getPosts(Query) {
+        try {
+            return await this.databases.listDocuments(
+                config.appwriteDatabasId,
+                config.appwriteCollectionId,
+                Query
+            )
+        } catch (error) {
+            console.error("Failed to get post because : ", error);
+            throw new Error("Failed to get post. Please try again.");
+        }
+
+    }
+
+    getFilePreview(fileId) {
+        return this.storage.getFilePreview(
+            config.appwriteBucketId,
+            fileId
+        )
     }
 }
 
