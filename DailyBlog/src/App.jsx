@@ -6,7 +6,7 @@ import authentification from './appwrite/auth';
 import { login, logout } from './store/authSlice';
 import Header from './components/Header/Header'; // Ensure this exists!
 import Footer from './components/Footer/Footer'; // Ensure this exists!
-import './App.css';
+
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -34,7 +34,7 @@ function App() {
   }
 
   return (
-    <div className="min-h-screen flex flex-wrap content-between bg-gray-400">
+    <div className="min-h-screen flex flex-wrap content-between  bg-slate-950 rounded-3xl">
       <div className="w-full block">
         <Header />
         <main>
