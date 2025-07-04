@@ -1,25 +1,70 @@
 import React from 'react'
 import Container from '../Container/Container'
-
+import { useNavigate } from 'react-router-dom'
+import { useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
 function Header() {
+  const navigate = useNavigate();
+  const authStatus = useSelector((state) => state.auth.status);
+
+  const navItems = [
+    {
+      name: 'Home',
+      slug: '/',
+      active: true
+    },
+    {
+      name: 'Blog',
+      slug: '/blog.jsx',
+      active: !authStatus
+    },
+    {
+      name: 'Create Blog',
+      slug: '/create-blog',
+      active: !authStatus
+    },
+    {
+      name: "Login",
+      slug: "/login",
+      active: !authStatus,
+    },
+    {
+      name: "Signup",
+      slug: "/signup",
+      active: !authStatus,
+    }
+  ]
+
   return (
-    
-      <header className=' m-8  '>
-        <div className='flex flex-wrap justify-between sticky '>
-          <h1 className=' text-white font-mono font-semibold'>BLOG.io</h1>
 
-          <ul className=' text-white flex gap-12 cursor-pointer'>
-            <li>Home</li>
-            <li>Blog</li>
-            <li>Create Blog</li>
+    <header className='py-3 shadow text-white'>
+      <Container>
+        <nav className='flex'>
+          <div className='mr-4 justify-center items-center flex'>
+            <Link to='/'>
+              Blog.io
+              </Link>
+          </div>
+          <ul className='flex ml-auto'>
+            {navItems.map((item) => 
+            item.active ? (
+              <li key={item.name}>
+                <button
+                onClick={() => navigate(item.slug)}
+                className='inline-bock px-6 py-2 duration-200 hover:text-slate-400 '
+                >{item.name}</button>
+              </li>
+            ) : null
+            )}
+            {authStatus && (
+              <li>
+                <LogoutBtn />
+              </li>
+            )}
           </ul>
-
-          <button className='bg-white px-5 rounded-lg '>Login</button>
-        </div>
-      </header>
-    
-
-    
+        </nav>
+        </Container>
+    </header>
   )
 }
 

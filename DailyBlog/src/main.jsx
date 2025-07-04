@@ -7,7 +7,10 @@ import store from './store/store.js'
 import Home from './pages/Home.jsx'
 import Login from './pages/Login.jsx'
 import Blog from './pages/Blog.jsx'
-import AddBlog from './pages/AddBlog.jsx';
+import AddBlog from './pages/AddBlog.jsx'
+import ErrorPage from './pages/ErrorPage.jsx'
+import SignUp from './pages/SignUp.jsx'
+
 import { createRoutesFromElements , Route , RouterProvider , createBrowserRouter } from 'react-router-dom'
 
 const router = createBrowserRouter(
@@ -16,7 +19,9 @@ const router = createBrowserRouter(
         <Route path='/' element={<Home/>}/>
         <Route path='Login' element={<Login/>}/>
         <Route path='Blog' element={<Blog/>}/>
-        <Route path='Create Blog' element={<AddBlog/>}/>
+        <Route path='create-Blog' element={<AddBlog/>} />
+        <Route path='SignUp' element={<SignUp/>}/>
+        <Route path='*' element={<ErrorPage />} />
       </Route>
     )
 )
@@ -24,8 +29,7 @@ const router = createBrowserRouter(
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <Provider store={store}>
-      <App />
       <RouterProvider router={router} />
     </Provider>
-  </StrictMode>,
+  </StrictMode>
 )
