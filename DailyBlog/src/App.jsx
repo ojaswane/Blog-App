@@ -8,6 +8,7 @@ import Header from './components/Header/Header'; // Ensure this exists!
 import Footer from './components/Footer/Footer'; // Ensure this exists!
 
 
+
 function App() {
   const [loading, setLoading] = useState(true);
   const dispatch = useDispatch();
