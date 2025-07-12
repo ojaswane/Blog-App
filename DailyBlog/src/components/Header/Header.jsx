@@ -15,7 +15,7 @@ function Header() {
     },
     {
       name: 'Blog',
-      slug: '/blog.jsx',
+      slug: '/blog',
       active: !authStatus
     },
     {

@@ -1,6 +1,6 @@
-import React, { useEffect, useRef, useMemo } from 'react';
+import React, { useRef, useMemo } from 'react';
 import { motion } from 'framer-motion';
-
+import { Link, Links } from 'react-router-dom';
 // Constants
 const COLORS = {
   white: 'text-white',
@@ -45,7 +45,7 @@ AnimatedWord.displayName = 'AnimatedWord';
 
 // Reusable Button component
 const CategoryButton = React.memo(({ label }) => (
-  <button 
+  <button
     className="px-4 py-2 rounded-full hover:bg-slate-700 transition-colors"
     aria-label={`Filter by ${label}`}
   >
@@ -71,8 +71,8 @@ export default function Home() {
     }
   };
 
-  const categories = useMemo(() => 
-    ['All', 'Tech', 'Manufacturing', 'Sports', 'Designs', 'Programming'], 
+  const categories = useMemo(() =>
+    ['All', 'Tech', 'Manufacturing', 'Sports', 'Designs', 'Programming'],
     []
   );
 
@@ -105,7 +105,7 @@ export default function Home() {
             placeholder="Search..."
             aria-label="Search articles"
           />
-          
+
           {categories.map(category => (
             <CategoryButton key={category} label={category} />
           ))}
@@ -125,11 +125,21 @@ export default function Home() {
         </section>
 
         {/* Trending Blogs */}
+        <br />
+
         <section aria-labelledby="trending-blogs" className={`${SPACING.large} w-full`}>
+          <h2 className='font-bold text-2xl text-center mb-20'>Trending blogs</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
             {[...Array(3)].map((_, i) => (
               <div key={i} className={`w-full aspect-square ${COLORS.slate800} rounded-lg`} />
             ))}
+          </div>
+          <br />
+          <div className='flex flex-row '>
+            <hr />
+            <Link to="/Blog" className={`text-lg font-bold ${COLORS.slate100} hover:${COLORS.slate400} transition-colors duration-300 ml-auto`}>
+              See More
+            </Link>
           </div>
         </section>
       </div>
