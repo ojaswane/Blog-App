@@ -40,7 +40,7 @@ function Header() {
     <header className='py-3 shadow text-white sticky top-0 border-b-2 border-b-slate-800 z-10'>
       <Container>
         <nav className='flex'>
-          <div className='mr-4 justify-center items-center flex'>
+          <div className='mr-4 justify-center items-center flex text-2xl font-bold font-mono'>
             <Link to='/'>
               Blog.io
               </Link>
@@ -58,7 +58,7 @@ function Header() {
             )}
             {authStatus && (
               <li>
-                <LogoutBtn />
+                <Logout />
               </li>
             )}
           </ul>
