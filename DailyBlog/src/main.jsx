@@ -10,6 +10,7 @@ import Blog from './pages/Blog.jsx'
 import AddBlog from './pages/AddBlog.jsx'
 import ErrorPage from './pages/ErrorPage.jsx'
 import SignUp from './pages/SignUp.jsx'
+import PreviewBlogs from './pages/Preview-blogs.jsx'
 
 import { createRoutesFromElements , Route , RouterProvider , createBrowserRouter } from 'react-router-dom'
 
@@ -22,6 +23,7 @@ const router = createBrowserRouter(
         <Route path='create-Blog' element={<AddBlog/>} />
         <Route path='SignUp' element={<SignUp/>}/>
         <Route path='*' element={<ErrorPage />} />
+        <Route path='preview-blogs' element={<PreviewBlogs/>} /> 
       </Route>
     )
 )
