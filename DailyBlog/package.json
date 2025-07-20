@@ -10,6 +10,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@splinetool/react-spline": "^4.1.0",
+    "@splinetool/runtime": "^1.10.32",
     "jodit-react": "^5.2.19",
     "motion": "^12.23.0",
     "react": "^19.1.0",

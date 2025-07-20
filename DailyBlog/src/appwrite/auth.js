@@ -11,7 +11,7 @@ export class Authentification {
             .setEndpoint(config.appwriteUrl)
             .setProject(config.appwriteProjectId);
 
-        this.account = new Account
+        this.account = new Account(this.client);
     }
 
     async createAccount({ email, password, name }) {
@@ -41,6 +41,7 @@ export class Authentification {
             throw new Error("Failed to login. Please try again.");
         }
     }
+    
 
     async logout() {
         try {
