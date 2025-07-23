@@ -13,6 +13,7 @@ function Header() {
 
   useEffect(() => {
     setName(auth.getCurrentUser().then((user) => user.name || 'Guest').catch(() => 'Guest'));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const navItems = [

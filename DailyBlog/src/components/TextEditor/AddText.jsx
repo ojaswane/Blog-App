@@ -11,14 +11,16 @@ const AddText = ({ placeholder }) => {
   };
 
   return (
-    <JoditEditor
-      ref={editor}
-      value={content}
-      config={config}
-      onBlur={(newContent) => setContent(newContent)}
-      style={{ height: '1px', backgroundColor: 'white', color: 'black' }}
-      onChange={(newContent) => setContent(newContent)}
-    />
+    <div className='h-full'>
+      <JoditEditor
+        ref={editor}
+        value={content}
+        config={config}
+        onBlur={(newContent) => setContent(newContent)}
+        style={{ height: '1px', backgroundColor: 'white', color: 'black' }}
+        onChange={(newContent) => setContent(newContent)}
+      />
+    </div>
   );
 };
 
