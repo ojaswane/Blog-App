@@ -32,8 +32,9 @@ export class Authentification {
 
     async login({ email, password }) {
         try {
-            const logedin = await this.account.createEmailSession(email, password);
-            return logedin;
+            const loggedIn = await this.account.createEmailPasswordSession(email, password);
+            console.log("User logged in:", loggedIn);
+            return loggedIn;
         }
 
         catch (error) {
