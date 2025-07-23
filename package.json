@@ -1,0 +1,13 @@
+{
+  "dependencies": {
+    "@reduxjs/toolkit": "^2.8.2",
+    "@tinymce/tinymce-react": "^6.2.1",
+    "appwrite": "^18.1.1",
+    "html-react-parser": "^5.2.5",
+    "react-hook-form": "^7.58.1",
+    "react-quill": "^2.0.0",
+    "react-redux": "^9.2.0",
+    "react-router-dom": "^7.6.2",
+    "react-spinners": "^0.17.0"
+  }
+}
