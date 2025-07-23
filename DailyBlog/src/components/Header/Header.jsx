@@ -1,11 +1,19 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Container from '../Container/Container'
 import { useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
+import { Authentification } from '../../appwrite/auth'
 function Header() {
   const navigate = useNavigate();
   const authStatus = useSelector((state) => state.auth.status);
+
+  const auth = new Authentification();
+  const [name, setName] = useState('');
+
+  useEffect(() => {
+    setName(auth.getCurrentUser().then((user) => user.name || 'Guest').catch(() => 'Guest'));
+  }, []);
 
   const navItems = [
     {
@@ -21,7 +29,7 @@ function Header() {
     {
       name: 'Create Blog',
       slug: '/create-blog',
-      active: !authStatus
+      active: true
     },
     {
       name: "Login",
@@ -43,27 +51,28 @@ function Header() {
           <div className='mr-4 justify-center items-center flex text-2xl font-bold font-mono'>
             <Link to='/'>
               Blog.io
-              </Link>
+            </Link>
           </div>
           <ul className='flex ml-auto'>
-            {navItems.map((item) => 
-            item.active ? (
-              <li key={item.name}>
-                <button
-                onClick={() => navigate(item.slug)}
-                className='inline-bock px-6 py-2 duration-200 hover:text-slate-400 '
-                >{item.name}</button>
-              </li>
-            ) : null
+            {navItems.map((item) =>
+              item.active ? (
+                <li key={item.name}>
+                  <button
+                    onClick={() => navigate(item.slug)}
+                    className='inline-bock px-6 py-2 duration-200 hover:text-slate-400 '
+                  >{item.name}</button>
+                </li>
+              ) : null
             )}
             {authStatus && (
-              <li>
-                <Logout />
+              <li className='flex flex-row align-center justify-center  '>
+                <p>{name}</p>
+                <button>Logout (TBI)</button>
               </li>
             )}
           </ul>
         </nav>
-        </Container>
+      </Container>
     </header>
   )
 }
