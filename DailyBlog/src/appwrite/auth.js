@@ -32,9 +32,14 @@ export class Authentification {
 
     async login({ email, password }) {
         try {
-            const loggedIn = await this.account.createEmailPasswordSession(email, password);
-            console.log("User logged in:", loggedIn);
-            return loggedIn;
+            // Get session
+            const session = await this.account.getSession('current');
+            if (!session) {
+                const loggedIn = await this.account.createEmailPasswordSession(email, password);
+                console.log("User logged in:", loggedIn);
+                return loggedIn;
+            }
+            return session;
         }
 
         catch (error) {
@@ -42,12 +47,12 @@ export class Authentification {
             throw new Error("Failed to login. Please try again.");
         }
     }
-    
+
 
     async logout() {
         try {
-            const logedout = await this.account.deleteSessions();
-            return logedout;
+            const loggedOut = await this.account.deleteSessions();
+            return loggedOut;
         }
 
         catch (error) {
