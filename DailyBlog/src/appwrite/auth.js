@@ -63,8 +63,14 @@ export class Authentification {
 
     async getCurrentUser() {
         try {
+
+            // First create a session
+            await this.account.createEmailPasswordSession('user@example.com', 'password');
+
+            // Now this will work
             const user = await this.account.get();
-            return user
+            console.log(user);
+
         }
         catch (error) {
             console.error("Appwrite Error:", error);

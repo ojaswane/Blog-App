@@ -30,7 +30,7 @@ function Header() {
     {
       name: 'Create Blog',
       slug: '/create-blog',
-      active: true
+      active: !authStatus
     },
     {
       name: "Login",
@@ -66,7 +66,7 @@ function Header() {
               ) : null
             )}
             {authStatus && (
-              <li className='flex flex-row align-center justify-center  '>
+              <li className='flex flex-row align-center justify-center'>
                 <p>{name}</p>
                 <button>Logout (TBI)</button>
               </li>
