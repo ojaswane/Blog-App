@@ -90,7 +90,7 @@ export default function Home() {
           width: '100vw',
         }}
       >
-        <Cubes
+        {/* <Cubes
           gridSize={8}
           maxAngle={60}
           radius={4}
@@ -100,10 +100,11 @@ export default function Home() {
           rippleSpeed={1.5}
           autoAnimate={true}
           rippleOnClick={false}  // Disabled click ripples for background
-        />
+        /> */}
       </div>
 
-      <div className={`w-full ${COLORS.white} ${SPACING.large} mb-10`}>
+   
+      <div className={`w-full ${COLORS.white} ${SPACING.large}  mb-10`}>
         <motion.div
           ref={containerRef}
           initial="hidden"
@@ -111,7 +112,7 @@ export default function Home() {
           variants={containerVariants}
           className="ml-5 md:ml-20"
         >
-          <motion.h1 className="text-4xl font-bold leading-tight">
+          <motion.h1 className="text-4xl font-bold leading-tight ">
             {words.map((word, i) => (
               <AnimatedWord key={`${word}-${i}`} word={word} />
             ))}

@@ -44,6 +44,9 @@ function Header() {
     }
   ]
 
+  
+
+
   return (
 
     <header className='py-3 shadow text-white sticky top-0 border-b-2 border-b-slate-800 z-10'>
@@ -67,8 +70,8 @@ function Header() {
             )}
             {authStatus && (
               <li className='flex flex-row align-center justify-center'>
-                <p>{name}</p>
-                <button>Logout (TBI)</button>
+                <p>ojas</p>
+                <button>Logout</button>
               </li>
             )}
           </ul>
