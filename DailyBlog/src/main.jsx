@@ -11,8 +11,11 @@ import AddBlog from './pages/AddBlog.jsx'
 import ErrorPage from './pages/ErrorPage.jsx'
 import SignUp from './pages/SignUp.jsx'
 import PreviewBlogs from './pages/Preview-blogs.jsx'
+import Profile from './pages/Profile.jsx'
+
 
 import { createRoutesFromElements , Route , RouterProvider , createBrowserRouter } from 'react-router-dom'
+
 
 const router = createBrowserRouter(
     createRoutesFromElements(
@@ -24,6 +27,7 @@ const router = createBrowserRouter(
         <Route path='SignUp' element={<SignUp/>}/>
         <Route path='*' element={<ErrorPage />} />
         <Route path='preview-blogs' element={<PreviewBlogs/>} /> 
+        <Route path='Profile' element={<Profile/>} />
       </Route>
     )
 )

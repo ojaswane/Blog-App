@@ -112,7 +112,7 @@ export default function Home() {
           variants={containerVariants}
           className="ml-5 md:ml-20"
         >
-          <motion.h1 className="text-4xl font-bold leading-tight ">
+          <motion.h1 className="text-5xl   font-bold leading-tight  ">
             {words.map((word, i) => (
               <AnimatedWord key={`${word}-${i}`} word={word} />
             ))}
@@ -125,10 +125,6 @@ export default function Home() {
             <p className="mt-1">find your <b className={COLORS.slate100}>Articles and Contents</b> Quickly and without any problem.</p>
           </div>
         </motion.div>
-
-        
-
-
 
         <div className={`flex flex-wrap gap-4 ${SPACING.xlarge} ml-5 md:ml-20`}>
           <input

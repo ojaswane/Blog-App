@@ -12,64 +12,77 @@ export class Authentification {
         this.account = new Account(this.client);
     }
 
+
+    async verifySession() {
+        try {
+            const session = await this.account.getSession('current');
+            const user = await this.account.get();
+            return { session, user };
+        } catch (error) {
+            console.log(error);
+            throw new Error("Invalid session or missing permissions");
+        }
+    }
+
+
     async createAccount({ email, password, name }) {
         try {
             const userAccount = await this.account.create(
-                ID.unique(), 
-                email, 
-                password, 
+                ID.unique(),
+                email,
+                password,
                 name
             );
-            
-            if (userAccount) {
-                // Directly create session after account creation
-                try {
-                    return await this.account.createEmailPasswordSession(email, password);
-                } catch (sessionError) {
-                    // Session creation failed but account was created
-                    console.error("Session creation error:", sessionError);
-                    return userAccount;
-                }
-            }
-            return userAccount;
-        } catch (error) {
-            console.error("Appwrite Create Account Error:", error);
-            throw error; // Throw original error
-        }
-    }
 
-    async login({ email, password }) {
-        try {
-            // Clear any existing sessions first
-            await this.account.deleteSessions();
-            
-            // Directly create new session (no need to check current session)
+            // Small delay for account propagation
+            await new Promise(resolve => setTimeout(resolve, 300));
+
             const session = await this.account.createEmailPasswordSession(email, password);
-            return session;
-        } catch (error) {
-            console.error("Appwrite login Error:", error);
-            throw error; // Throw original error
-        }
-    }
+            await this.verifySession(); // Full verification
 
-    async logout() {
-        try {
-            return await this.account.deleteSessions();
+            return { userAccount, session };
         } catch (error) {
-            console.error("Appwrite logout Error:", error);
+            console.error("Account creation failed:", error);
             throw error;
         }
     }
 
-    async getCurrentUser() {
+    
+    async login({ email, password }) {
         try {
-            const user = await this.account.get();
-            return user;
+            await this.account.deleteSessions();
+            const session = await this.account.createEmailPasswordSession(email, password);
+
+            // Verify session is actually usable
+            const { user } = await this.verifySession();
+            return { session, user };
         } catch (error) {
-            console.error("Appwrite getCurrentUser Error:", error);
-            return null; // Return null instead of throwing when not authenticated
+            console.error("Login failed:", error);
+            throw error;
         }
     }
+
+
+    async getCurrentUser() {
+        try {
+            const { user } = await this.verifySession();
+            return user;
+        } catch {
+            return null;
+        }
+    }
+
+    async logout() {
+        try{
+            await this.account.deleteSessions()
+
+            return true
+        } catch(err) {
+            console.log("logout failed ", err)
+            throw err ;
+        }
+    }
+
 }
 
 const authentification = new Authentification();
